@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	_ft_putnbr_u(unsigned int n, char c, int *count, t_flag flags)
 {

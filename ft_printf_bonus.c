@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 
 static int	thingie_(t_flag flags)
@@ -99,7 +99,7 @@ int	ft_printf(char const *s, ...)
 int main()
 {
 	int n = 765;
-	ft_printf("%+#%#+k\n", 1);
-	printf("%+#%#+k\n", 1);
+	ft_printf("%    1s\n", "asddas");
+	printf("%    33s\n", "asdasd");
 	//printf("\n%#+lll\n");
 }
