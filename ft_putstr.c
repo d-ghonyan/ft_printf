@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_putstr(char const *s, int *count)
+void	ft_putstr(char const *s, int *count, t_flag flags)
 {
 	int		i;
 
@@ -25,7 +25,7 @@ void	ft_putstr(char const *s, int *count)
 	}
 	while (s[i])
 	{
-		ft_putchar(s[i], count);
+		ft_putchar(s[i], count, flags);
 		i++;
 	}
 }

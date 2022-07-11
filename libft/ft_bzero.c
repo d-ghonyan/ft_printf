@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dghonyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 20:40:25 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/04/03 20:40:33 by dghonyan         ###   ########.fr       */
+/*   Created: 2022/03/10 20:14:52 by dghonyan          #+#    #+#             */
+/*   Updated: 2022/03/10 20:16:04 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stddef.h>
 
-void	ft_putchar(char c, int *count, t_flag flags)
+void	ft_bzero(void *s, size_t n)
 {
-	(void) flags;
-	*count += write(1, &c, 1);
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((char *)s)[i] = '\0';
+		i++;
+	}
 }

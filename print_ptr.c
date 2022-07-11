@@ -12,18 +12,18 @@
 
 #include "ft_printf.h"
 
-static void	to_hex_lower_p(unsigned long int n, int is_upper, int *count)
+static void	to_hex_lower_p(unsigned long int n, int is_upper, int *count, t_flag flags)
 {
 	char	*hex;
 
 	hex = "0123456789abcdef";
 	if (n > 15)
-		to_hex_lower_p(n / 16, is_upper, count);
-	ft_putchar(hex[n % 16], count);
+		to_hex_lower_p(n / 16, is_upper, count, flags);
+	ft_putchar(hex[n % 16], count, flags);
 }
 
-void	print_ptr(uintptr_t ptr, int *count)
+void	print_ptr(uintptr_t ptr, int *count, t_flag flags)
 {
-	ft_putstr("0x", count);
-	to_hex_lower_p(ptr, 0, count);
+	ft_putstr("0x", count, flags);
+	to_hex_lower_p(ptr, 0, count, flags);
 }

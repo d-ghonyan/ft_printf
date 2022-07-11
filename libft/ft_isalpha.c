@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dghonyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 20:40:25 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/04/03 20:40:33 by dghonyan         ###   ########.fr       */
+/*   Created: 2022/03/10 20:11:53 by dghonyan          #+#    #+#             */
+/*   Updated: 2022/03/10 20:16:20 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-void	ft_putchar(char c, int *count, t_flag flags)
+int	ft_isalpha(int c)
 {
-	(void) flags;
-	*count += write(1, &c, 1);
+	return ((c >= 65 && c <= 90)
+		|| (c >= 97 && c <= 122));
 }

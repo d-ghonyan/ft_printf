@@ -12,19 +12,28 @@
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int n, int *count)
+void	_ft_putnbr(int n, int *count, t_flag flags)
 {
 	if (n == -2147483648)
 	{
-		ft_putstr("-2", count);
+		ft_putstr("-2", count, flags);
 		n = 147483648;
 	}
 	else if (n < 0)
 	{
-		ft_putchar('-', count);
+		ft_putchar('-', count, flags);
 		n *= -1;
 	}
 	if (n > 9)
-		ft_putnbr(n / 10, count);
-	ft_putchar((n % 10) + 48, count);
+		_ft_putnbr(n / 10, count, flags);
+	ft_putchar((n % 10) + 48, count, flags);
+}
+
+void	ft_putnbr(int n, int *count, t_flag flags)
+{
+	if (flags.plus && n >= 0)
+		ft_putchar('+', count, flags);
+	else if (flags.space && n >= 0)
+		ft_putchar(' ', count, flags);
+	_ft_putnbr(n, count, flags);
 }

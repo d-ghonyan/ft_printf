@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dghonyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 20:40:25 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/04/03 20:40:33 by dghonyan         ###   ########.fr       */
+/*   Created: 2022/03/13 11:46:52 by dghonyan          #+#    #+#             */
+/*   Updated: 2022/03/13 11:46:54 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stddef.h>
 
-void	ft_putchar(char c, int *count, t_flag flags)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	(void) flags;
-	*count += write(1, &c, 1);
+	if (n == 0)
+		return (0);
+	while (--n && *(unsigned char *)s1 == *(unsigned char *)s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

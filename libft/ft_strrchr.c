@@ -1,19 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dghonyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 20:40:25 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/04/03 20:40:33 by dghonyan         ###   ########.fr       */
+/*   Created: 2022/03/13 11:47:22 by dghonyan          #+#    #+#             */
+/*   Updated: 2022/03/13 11:47:24 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stddef.h>
 
-void	ft_putchar(char c, int *count, t_flag flags)
+char	*ft_strrchr(const char *s, int c)
 {
-	(void) flags;
-	*count += write(1, &c, 1);
+	int	i;
+
+	i = 0;
+	if ((char)c == '\0')
+	{
+		while (*s)
+			s++;
+		return ((char *)s);
+	}
+	while (*s)
+	{
+		s++;
+		i++;
+	}
+	s--;
+	while (i)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s--;
+		i--;
+	}
+	return (NULL);
 }

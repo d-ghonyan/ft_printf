@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dghonyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 20:40:25 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/04/03 20:40:33 by dghonyan         ###   ########.fr       */
+/*   Created: 2022/03/13 21:17:42 by dghonyan          #+#    #+#             */
+/*   Updated: 2022/03/13 21:29:39 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stddef.h>
+#include "libft.h"
 
-void	ft_putchar(char c, int *count, t_flag flags)
+size_t	ft_strlcat(char *dst, const char *s, size_t size)
 {
-	(void) flags;
-	*count += write(1, &c, 1);
+	size_t	i;
+	size_t	j;
+	size_t	len;
+
+	j = 0;
+	i = ft_strlen(dst);
+	len = ft_strlen(dst);
+	if (size <= ft_strlen(dst))
+		return (size + ft_strlen(s));
+	while (s[j] && i < size - 1)
+	{
+		dst[i] = s[j];
+		j++;
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(s) + len);
 }

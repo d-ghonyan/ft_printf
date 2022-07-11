@@ -2,31 +2,28 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -c
 ARCHIVE = ar -crs
-SRCS = ft_putchar.c	\
-		ft_putstr.c \
- 		ft_putnbr.c \
-		ft_putnbr_u.c \
-	 	to_hex_lower.c \
-		to_hex_upper.c \
-		print_ptr.c \
-		ft_printf.c
+SRCS = $(wildcard *.c)
+LIBFT = -lft -L libft
 	
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+all: lib $(NAME)
+
+lib:
+	cd libft && make
 
 $(NAME): $(OBJS)
 	$(ARCHIVE) $(NAME) $(OBJS) 
 
 $(OBJS):
-	$(CC) $(CFLAGS) $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) $(LIBFT)
 
 clean:
-	rm -f *.o
+	rm -f *.o libft/*.o
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) libft/libft.a
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re lib

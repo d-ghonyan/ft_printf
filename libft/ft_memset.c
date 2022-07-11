@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dghonyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 20:40:25 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/04/03 20:40:33 by dghonyan         ###   ########.fr       */
+/*   Created: 2022/03/10 20:15:24 by dghonyan          #+#    #+#             */
+/*   Updated: 2022/03/10 20:15:25 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stddef.h>
 
-void	ft_putchar(char c, int *count, t_flag flags)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	(void) flags;
-	*count += write(1, &c, 1);
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((char *)str)[i] = (unsigned char)c;
+		i++;
+	}
+	return (str);
 }

@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dghonyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 20:40:25 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/04/03 20:40:33 by dghonyan         ###   ########.fr       */
+/*   Created: 2022/03/13 11:46:29 by dghonyan          #+#    #+#             */
+/*   Updated: 2022/03/13 11:46:31 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stddef.h>
 
-void	ft_putchar(char c, int *count, t_flag flags)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	(void) flags;
-	*count += write(1, &c, 1);
+	if (n == 0)
+		return (NULL);
+	while (--n && *(unsigned char *)s != (unsigned char)c)
+		s++;
+	if (*(unsigned char *)s != (unsigned char)c)
+		return (NULL);
+	return ((void *)s);
 }

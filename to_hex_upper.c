@@ -12,12 +12,19 @@
 
 #include "ft_printf.h"
 
-void	to_hex_upper(unsigned int n, int *count)
+void	_to_hex_upper(unsigned int n, int *count, t_flag flags)
 {
 	char	*hex;
 
 	hex = "0123456789ABCDEF";
 	if (n > 15)
-		to_hex_upper(n / 16, count);
-	ft_putchar(hex[n % 16], count);
+		_to_hex_upper(n / 16, count, flags);
+	ft_putchar(hex[n % 16], count, flags);
+}
+
+void	to_hex_upper(unsigned int n, int *count, t_flag flags)
+{
+	if (flags.octo && n)
+		ft_putstr("0X", count, flags);
+	_to_hex_upper(n, count, flags);
 }
