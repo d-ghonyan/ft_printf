@@ -25,7 +25,7 @@ void	ft_putstr(char const *s, int *count);
 void	to_hex_upper(unsigned int n, int *count);
 void	ft_putnbr_u(unsigned int n, char c, int *count);
 void	ft_putchar(char c, int *count);
-void	print_ptr(void *p, int *count);
+void	print_ptr(uintptr_t ptr, int *count);
 int		ft_printf(const char *s, ...);
 
 #endif

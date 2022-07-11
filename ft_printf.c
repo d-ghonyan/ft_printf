@@ -23,7 +23,7 @@ static void	norm(char const *s, int i, va_list args, int *c)
 	else if (s[i] == 's')
 		ft_putstr(va_arg(args, char *), c);
 	else if (s[i] == 'p')
-		print_ptr(va_arg(args, void *), c);
+		print_ptr(va_arg(args, uintptr_t), c);
 	else if (s[i] == '%')
 		ft_putchar('%', c);
 	else

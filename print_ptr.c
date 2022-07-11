@@ -22,13 +22,8 @@ static void	to_hex_lower_p(unsigned long int n, int is_upper, int *count)
 	ft_putchar(hex[n % 16], count);
 }
 
-void	print_ptr(void *a, int *count)
+void	print_ptr(uintptr_t ptr, int *count)
 {
-	uintptr_t			a_u;
-	unsigned long int	i;
-
-	a_u = (uintptr_t)a;
-	i = (sizeof(a_u)) << 3;
 	ft_putstr("0x", count);
-	to_hex_lower_p((a_u), 0, count);
+	to_hex_lower_p(ptr, 0, count);
 }
