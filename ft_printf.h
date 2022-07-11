@@ -14,11 +14,16 @@
 
 # define FT_PRINTF_H
 
-void	to_hex_lower(unsigned int n, int is_upper, int *count);
+# include <unistd.h>
+# include <stdint.h>
+# include <stdarg.h>
+# include <limits.h>
+
+void	to_hex_lower(unsigned int n, int *count);
 void	ft_putnbr(int n, int *count);
 void	ft_putstr(char const *s, int *count);
 void	to_hex_upper(unsigned int n, int *count);
-void	ft_putnbr_u(unsigned int n, int *count);
+void	ft_putnbr_u(unsigned int n, char c, int *count);
 void	ft_putchar(char c, int *count);
 void	print_ptr(void *p, int *count);
 int		ft_printf(const char *s, ...);
