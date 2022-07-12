@@ -16,7 +16,10 @@ static int	thingie_(t_flag flags)
 {
 	return (flags.octo == 0
 		&& flags.plus == 0
-		&& flags.space == 0);
+		&& flags.space == 0
+		&& flags.minus == 0
+		&& flags.precision == 0
+		&& flags.width == 0);
 }
 
 static void	thingie(t_flag *flags)
@@ -24,6 +27,10 @@ static void	thingie(t_flag *flags)
 	flags->octo = 0;
 	flags->plus = 0;
 	flags->space = 0;
+	flags->minus = 0;
+	flags->precision = 0;
+	flags->precision_width = -1;
+	flags->width = -1;
 }
 
 static void	norm(char s, va_list args, int *c, t_flag flags)
@@ -58,6 +65,14 @@ static void	another_thingie(t_flag flags, char c, int *count)
 			ft_putchar('+', count, flags);
 		if (flags.space)
 			ft_putchar(' ', count, flags);
+		if (flags.precision)
+			ft_putchar('.', count, flags);
+		if (flags.width)
+			ft_putnbr(flags.width, count, flags);
+		if (flags.minus)
+			ft_putchar('-', count, flags);
+		if (flags.zero)
+			ft_putchar('0', count, flags);
 	}
 }
 
@@ -78,6 +93,8 @@ int	ft_printf(char const *s, ...)
 		{
 			i++;
 			eh(&flags, &i, s);
+			printf("%d", flags.width);
+			//width(flags, s[i]);
 			another_thingie(flags, s[i], &c);
 			norm(s[i], args, &c, flags);
 		}
@@ -87,4 +104,11 @@ int	ft_printf(char const *s, ...)
 	}
 	va_end(args);
 	return (c);
+}
+
+int main()
+{
+	// printf("--%-120s--\n", "1123");
+	ft_printf("--%120s----\n", "1123");
+	// ft_printf("aaaaaaaa  %0s  aaaaaa\n", 123);
 }

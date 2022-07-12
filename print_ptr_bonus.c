@@ -31,11 +31,49 @@ void	print_ptr(uintptr_t ptr, int *count, t_flag flags)
 
 void	eh(t_flag *flags, int *i, char const *s)
 {
-	while (s[*i] && ft_strchr("# +", s[*i]))
+	int	a;
+
+	while (s[*i] && (ft_strchr("# +.0-", s[*i]) || (s[*i] >= '1' && s[*i] <= '9')))
 	{
 		flags->octo += s[*i] == '#';
 		flags->plus += s[*i] == '+';
 		flags->space += s[*i] == ' ';
+		flags->zero += s[*i] == '0';
+		if (s[*i] && (s[*i] >= '1' && s[*i] <= '9'))
+		{
+			flags->width = 0;
+			a = 0;
+			while (s[*i] && (s[*i] >= '0' && s[*i] <= '9'))
+			{
+				a = 1;
+				flags->width = flags->width * 10 + s[*i] - 48;
+				*i += 1;
+			}
+			*i -= a;
+		}
+
+		if (s[*i] == '.')
+		{
+			flags->precision += s[*i] == '.';
+			*i += 1;
+			flags->precision_width = 0;
+			while (s[*i] && (s[*i] >= '0' && s[*i] <= '9'))
+			{
+				flags->precision_width = flags->precision_width
+					* 10 + s[*i] - 48;
+				*i += 1;
+			}
+		}
+		flags->minus += s[*i] == '-';
 		*i += 1;
 	}
 }
+
+// void	width(t_flag flags, char c)
+// {
+// 	if (c == 's' && flags.minus)
+// 	{
+// 		ft_putstr
+// 		while (flags.width--)
+// 	}
+// }

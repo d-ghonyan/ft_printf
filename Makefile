@@ -3,14 +3,15 @@ NAME_B = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -c
 ARCHIVE = ar -crs
-# SRCS = ft_putchar.c	\
-# 		ft_putstr.c \
-#  		ft_putnbr.c \
-# 		ft_putnbr_u.c \
-# 	 	to_hex_lower.c \
-# 		to_hex_upper.c \
-# 		print_ptr.c \
-# 		ft_printf.c
+SRCS = ft_putchar.c	\
+		ft_putstr.c \
+ 		ft_putnbr.c \
+		ft_putnbr_u.c \
+	 	to_hex_lower.c \
+		to_hex_upper.c \
+		print_ptr.c \
+		ft_printf.c \
+		ft_strchr.c
 
 SRCS_B = $(wildcard *_bonus.c)
 LIBFT = -lft -L libft
