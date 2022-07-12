@@ -12,7 +12,8 @@
 
 #include "ft_printf_bonus.h"
 
-static void	to_hex_lower_p(unsigned long int n, int is_upper, int *count, t_flag flags)
+static void	to_hex_lower_p(unsigned long int n, int is_upper,
+	int *count, t_flag flags)
 {
 	char	*hex;
 
@@ -26,4 +27,15 @@ void	print_ptr(uintptr_t ptr, int *count, t_flag flags)
 {
 	ft_putstr("0x", count, flags);
 	to_hex_lower_p(ptr, 0, count, flags);
+}
+
+void	eh(t_flag *flags, int *i, char const *s)
+{
+	while (s[*i] && ft_strchr("# +", s[*i]))
+	{
+		flags->octo += s[*i] == '#';
+		flags->plus += s[*i] == '+';
+		flags->space += s[*i] == ' ';
+		*i += 1;
+	}
 }

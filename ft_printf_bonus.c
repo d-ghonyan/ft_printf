@@ -12,12 +12,11 @@
 
 #include "ft_printf_bonus.h"
 
-
 static int	thingie_(t_flag flags)
 {
 	return (flags.octo == 0
-	&& flags.plus == 0
-	&& flags.space == 0);
+		&& flags.plus == 0
+		&& flags.space == 0);
 }
 
 static void	thingie(t_flag *flags)
@@ -27,28 +26,28 @@ static void	thingie(t_flag *flags)
 	flags->space = 0;
 }
 
-static void	norm(char const *s, int i, va_list args, int *c, t_flag flags)
+static void	norm(char s, va_list args, int *c, t_flag flags)
 {
-	if (s[i] == 'd' || s[i] == 'i')
+	if (s == 'd' || s == 'i')
 		ft_putnbr(va_arg(args, int), c, flags);
-	else if (s[i] == 'c')
+	else if (s == 'c')
 		ft_putchar(va_arg(args, int), c, flags);
-	else if (s[i] == 'x' || s[i] == 'X' || s[i] == 'u')
-		ft_putnbr_u(va_arg(args, unsigned int), s[i], c, flags);
-	else if (s[i] == 's')
+	else if (s == 'x' || s == 'X' || s == 'u')
+		ft_putnbr_u(va_arg(args, unsigned int), s, c, flags);
+	else if (s == 's')
 		ft_putstr(va_arg(args, char *), c, flags);
-	else if (s[i] == 'p')
+	else if (s == 'p')
 		print_ptr(va_arg(args, uintptr_t), c, flags);
-	else if (s[i] == '%')
+	else if (s == '%')
 		ft_putchar('%', c, flags);
 	else if (thingie_(flags))
 	{
 		ft_putchar('%', c, flags);
-		ft_putchar(s[i], c, flags);
+		ft_putchar(s, c, flags);
 	}
 }
 
-void	another_thingie(t_flag flags, char c, int *count)
+static void	another_thingie(t_flag flags, char c, int *count)
 {
 	if (!ft_strchr("cspiduxX%", c))
 	{
@@ -78,15 +77,9 @@ int	ft_printf(char const *s, ...)
 		if (s[i] == '%' && s[i + 1])
 		{
 			i++;
-			while (s[i] && ft_strchr("# +", s[i]))
-			{
-				flags.octo += s[i] == '#';
-				flags.plus += s[i] == '+';
-				flags.space += s[i] == ' ';
-				i++;
-			}
+			eh(&flags, &i, s);
 			another_thingie(flags, s[i], &c);
-			norm(s, i, args, &c, flags);
+			norm(s[i], args, &c, flags);
 		}
 		else
 			ft_putchar(s[i], &c, flags);
@@ -94,12 +87,4 @@ int	ft_printf(char const *s, ...)
 	}
 	va_end(args);
 	return (c);
-}
-
-int main()
-{
-	int n = 765;
-	ft_printf("%    1s\n", "asddas");
-	printf("%    33s\n", "asdasd");
-	//printf("\n%#+lll\n");
 }

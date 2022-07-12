@@ -37,6 +37,7 @@ void	to_hex_upper(unsigned int n, int *count, t_flag flags);
 void	ft_putnbr_u(unsigned int n, char c, int *count, t_flag flags);
 void	ft_putchar(char c, int *count, t_flag flags);
 void	print_ptr(uintptr_t ptr, int *count, t_flag flags);
+void	eh(t_flag *flags, int *i, char const *s);
 int		ft_printf(const char *s, ...);
 
 #endif
