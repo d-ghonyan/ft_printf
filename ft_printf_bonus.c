@@ -94,10 +94,11 @@ int	ft_printf(char const *s, ...)
 		{
 			i++;
 			eh(&flags, &i, s);
-			printf("%d %d %d %d\n", flags.width, flags.precision_width, flags.zero, flags.minus);
-			//width(flags, s[i]);
+			// printf("%d %d %d %d\n", flags.width, flags.precision_width, flags.zero, flags.minus);
+			width_not_minus(flags, s[i], &c, s);
 			another_thingie(flags, s[i], &c);
 			norm(s[i], args, &c, flags);
+			width_minus(flags, s[i], &c, s);
 		}
 		else
 			ft_putchar(s[i], &c, flags);
@@ -109,7 +110,7 @@ int	ft_printf(char const *s, ...)
 
 int main()
 {
-	printf("--%123.12x--\n", 123123);
-	// ft_printf("--%120.90s----\n", "1123");
+	printf("--%2c----\n", 'a');
+	ft_printf("--%2c----\n", 'a');
 	// ft_printf("aaaaaaaa  %0s  aaaaaa\n", 123);
 }

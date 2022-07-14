@@ -38,6 +38,7 @@ void	eh(t_flag *flags, int *i, char const *s)
 		flags->octo += s[*i] == '#';
 		flags->plus += s[*i] == '+';
 		flags->space += s[*i] == ' ';
+		flags->minus += s[*i] == '-';
 		flags->zero += s[*i] == '0';
 		if (s[*i] && (s[*i] >= '1' && s[*i] <= '9'))
 		{
@@ -54,7 +55,7 @@ void	eh(t_flag *flags, int *i, char const *s)
 		a = 0;
 		if (s[*i] == '.')
 		{
-			flags->precision += s[*i] == '.';
+			flags->precision += 1;
 			*i += 1;
 			flags->precision_width = 0;
 			while (s[*i] && (s[*i] >= '0' && s[*i] <= '9'))
@@ -66,16 +67,6 @@ void	eh(t_flag *flags, int *i, char const *s)
 			}
 			*i -= a;
 		}
-		flags->minus += s[*i] == '-';
 		*i += 1;
 	}
 }
-
-// void	width_not_minus(t_flag flags, char c)
-// {
-// 	if (c == 's' && flags.minus)
-// 	{
-// 		ft_putstr
-// 		while (flags.width--)
-// 	}
-// }

@@ -12,7 +12,7 @@
 
 #include "ft_printf_bonus.h"
 
-void	_ft_putstr(char const *s, int *count, t_flag flags)
+void	ft_putstr(char const *s, int *count, t_flag flags)
 {
 	int		i;
 
@@ -30,24 +30,24 @@ void	_ft_putstr(char const *s, int *count, t_flag flags)
 	}
 }
 
-void	ft_putstr(char const *s, int *count, t_flag flags)
-{
-	if (flags.minus)
-	{
-		_ft_putstr(s, count, flags);
-		while (flags.width > 0)
-		{
-			ft_putchar(' ', count, flags);
-			flags.width--;
-		}
-	}
-	else
-	{
-		while (flags.width > 0)
-		{
-			ft_putchar(' ', count, flags);
-			flags.width--;
-		}
-		_ft_putstr(s, count, flags);
-	}
-}
+// void	ft_putstr(char const *s, int *count, t_flag flags)
+// {
+// 	if (flags.minus)
+// 	{
+// 		_ft_putstr(s, count, flags);
+// 		while (flags.width > 0)
+// 		{
+// 			ft_putchar(' ', count, flags);
+// 			flags.width--;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		while (flags.width > 0)
+// 		{
+// 			ft_putchar(' ', count, flags);
+// 			flags.width--;
+// 		}
+// 		_ft_putstr(s, count, flags);
+// 	}
+// }
