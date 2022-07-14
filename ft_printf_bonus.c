@@ -28,6 +28,7 @@ static void	thingie(t_flag *flags)
 	flags->plus = 0;
 	flags->space = 0;
 	flags->minus = 0;
+	flags->zero = 0;
 	flags->precision = 0;
 	flags->precision_width = -1;
 	flags->width = -1;
@@ -93,7 +94,7 @@ int	ft_printf(char const *s, ...)
 		{
 			i++;
 			eh(&flags, &i, s);
-			printf("%d", flags.width);
+			printf("%d %d %d %d\n", flags.width, flags.precision_width, flags.zero, flags.minus);
 			//width(flags, s[i]);
 			another_thingie(flags, s[i], &c);
 			norm(s[i], args, &c, flags);
@@ -108,7 +109,7 @@ int	ft_printf(char const *s, ...)
 
 int main()
 {
-	// printf("--%-120s--\n", "1123");
-	ft_printf("--%120s----\n", "1123");
+	printf("--%123.12x--\n", 123123);
+	// ft_printf("--%120.90s----\n", "1123");
 	// ft_printf("aaaaaaaa  %0s  aaaaaa\n", 123);
 }

@@ -34,22 +34,20 @@ void	ft_putstr(char const *s, int *count, t_flag flags)
 {
 	if (flags.minus)
 	{
-		ft_putstr(s, count, flags);
-		while (flags.width--)
+		_ft_putstr(s, count, flags);
+		while (flags.width > 0)
+		{
 			ft_putchar(' ', count, flags);
+			flags.width--;
+		}
 	}
 	else
 	{
-		// printf("%d\n", flags.width);
 		while (flags.width > 0)
 		{
-			ft_putchar('A', count, flags);
-			//printf("AS");
+			ft_putchar(' ', count, flags);
 			flags.width--;
 		}
-		ft_putchar(flags.width + 48, count, flags);
-		ft_putstr(s, count, flags);
-		ft_putchar(9 + 48, count, flags);
-		
+		_ft_putstr(s, count, flags);
 	}
 }

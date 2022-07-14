@@ -51,7 +51,7 @@ void	eh(t_flag *flags, int *i, char const *s)
 			}
 			*i -= a;
 		}
-
+		a = 0;
 		if (s[*i] == '.')
 		{
 			flags->precision += s[*i] == '.';
@@ -59,17 +59,19 @@ void	eh(t_flag *flags, int *i, char const *s)
 			flags->precision_width = 0;
 			while (s[*i] && (s[*i] >= '0' && s[*i] <= '9'))
 			{
+				a = 1;
 				flags->precision_width = flags->precision_width
 					* 10 + s[*i] - 48;
 				*i += 1;
 			}
+			*i -= a;
 		}
 		flags->minus += s[*i] == '-';
 		*i += 1;
 	}
 }
 
-// void	width(t_flag flags, char c)
+// void	width_not_minus(t_flag flags, char c)
 // {
 // 	if (c == 's' && flags.minus)
 // 	{
