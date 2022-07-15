@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dghonyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,17 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
 
-# define FT_PRINTF_H
+# define FT_PRINTF_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdint.h>
 # include <stdarg.h>
 # include <limits.h>
-
-// # include "libft/libft.h"
 
 typedef struct s_flag
 {
@@ -34,7 +32,6 @@ typedef struct s_flag
 	int	precision_width;
 }	t_flag;
 
-
 void	to_hex_lower(unsigned int n, int *count, t_flag flags);
 void	ft_putnbr(int n, int *count, t_flag flags);
 void	ft_putstr(char const *s, int *count, t_flag flags);
@@ -47,6 +44,7 @@ char	*ft_strchr(const char *s, int c);
 int		ft_strlen(char const *s);
 int		len(int num);
 int		len_ptr(uintptr_t num);
+int		len_u(unsigned int num);
 int		len_hex(unsigned int num);
 int		ft_printf(const char *s, ...);
 

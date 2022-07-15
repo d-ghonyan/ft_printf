@@ -47,11 +47,11 @@ static void	norm(char s, va_list args, int *c, t_flag flags)
 	else if (s == 'p')
 		print_ptr(va_arg(args, uintptr_t), c, flags);
 	else if (s == '%')
-		ft_putchar('%', c, flags);
+		*c += write(1, "%", 1);
 	else if (thingie_(flags))
 	{
-		ft_putchar('%', c, flags);
-		ft_putchar(s, c, flags);
+		*c += write(1, "%", 1);
+		*c += write(1, &s, 1);
 	}
 }
 
@@ -59,21 +59,21 @@ static void	another_thingie(t_flag flags, char c, int *count)
 {
 	if (!ft_strchr("cspiduxX%", c))
 	{
-		ft_putchar('%', count, flags);
+		write(1, "%", 1);
 		if (flags.octo)
-			ft_putchar('#', count, flags);
+			write(1, "#", 1);
 		if (flags.plus)
-			ft_putchar('+', count, flags);
+			write(1, "+", 1);
 		if (flags.space)
-			ft_putchar(' ', count, flags);
+			write(1, " ", 1);
 		if (flags.precision)
-			ft_putchar('.', count, flags);
+			write(1, ".", 1);
 		if (flags.width)
 			ft_putnbr(flags.width, count, flags);
 		if (flags.minus)
-			ft_putchar('-', count, flags);
+			write(1, "-", 1);
 		if (flags.zero)
-			ft_putchar('0', count, flags);
+			write(1, "0", 1);
 	}
 }
 
@@ -98,21 +98,21 @@ int	ft_printf(char const *s, ...)
 			norm(s[i], args, &c, flags);
 		}
 		else
-			ft_putchar(s[i], &c, flags);
+			c += write (1, s + i, 1);
 		i++;
 	}
 	va_end(args);
 	return (c);
 }
 
-int main()
-{
-	int a = 123123;
+// int main()
+// {
+// 	int a = 123123;
 
-	printf("--%12.10u----\n", 1);
-	ft_printf("--%12.10u----\n", 1);
-// ft_printf("--%- 11.10x----\n", 0);
+// 	printf("%04d\n", 9);
+// 	ft_printf("%04d\n", 9);
+// // ft_printf("--%- 11.10x----\n", 0);
 
-	printf("\n");
-	// ft_printf("aaaaaaaa  %0s  aaaaaa\n", 123);
-}
+// 	printf("\n");
+// 	// ft_printf("aaaaaaaa  %0s  aaaaaa\n", 123);
+// }

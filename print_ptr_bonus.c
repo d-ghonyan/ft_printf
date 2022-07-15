@@ -47,29 +47,35 @@ void	print_ptr(uintptr_t ptr, int *count, t_flag flags)
 	}
 }
 
+static void	too_many_lines(t_flag *flags, char const *s, int *i, int a)
+{
+	flags->octo += s[*i] == '#';
+	flags->plus += s[*i] == '+';
+	flags->space += s[*i] == ' ';
+	flags->minus += s[*i] == '-';
+	flags->zero += s[*i] == '0';
+	if (s[*i] && (s[*i] >= '1' && s[*i] <= '9'))
+	{
+		flags->width = 0;
+		a = 0;
+		while (s[*i] && (s[*i] >= '0' && s[*i] <= '9'))
+		{
+			a = 1;
+			flags->width = flags->width * 10 + s[*i] - 48;
+			*i += 1;
+		}
+		*i -= a;
+	}
+}
+
 void	eh(t_flag *flags, int *i, char const *s)
 {
 	int	a;
 
-	while (s[*i] && (ft_strchr("# +.0-", s[*i]) || (s[*i] >= '1' && s[*i] <= '9')))
+	while (s[*i] && (ft_strchr("# +.0-", s[*i])
+			|| (s[*i] >= '1' && s[*i] <= '9')))
 	{
-		flags->octo += s[*i] == '#';
-		flags->plus += s[*i] == '+';
-		flags->space += s[*i] == ' ';
-		flags->minus += s[*i] == '-';
-		flags->zero += s[*i] == '0';
-		if (s[*i] && (s[*i] >= '1' && s[*i] <= '9'))
-		{
-			flags->width = 0;
-			a = 0;
-			while (s[*i] && (s[*i] >= '0' && s[*i] <= '9'))
-			{
-				a = 1;
-				flags->width = flags->width * 10 + s[*i] - 48;
-				*i += 1;
-			}
-			*i -= a;
-		}
+		too_many_lines(flags, s, i, a);
 		a = 0;
 		if (s[*i] == '.')
 		{
