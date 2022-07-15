@@ -12,8 +12,29 @@
 
 #include "ft_printf_bonus.h"
 
+void	_ft_putchar(char c, int *count)
+{
+	*count += write(1, &c, 1);
+}
+
 void	ft_putchar(char c, int *count, t_flag flags)
 {
-	(void) flags;
-	*count += write(1, &c, 1);
+	flags.width -= 1;
+	if (!flags.minus)
+	{
+		while (flags.width > 0)
+		{
+			_ft_putchar(' ', count);
+			flags.width--;
+		}
+	}
+	_ft_putchar(c, count);
+	if (flags.minus)
+	{
+		while (flags.width > 0)
+		{
+			_ft_putchar(' ', count);
+			flags.width--;
+		}
+	}
 }
