@@ -12,21 +12,39 @@
 
 #include "ft_printf_bonus.h"
 
-static void	to_hex_lower_p(unsigned long int n, int is_upper,
-	int *count, t_flag flags)
+static void	to_hex_lower_p(uintptr_t n, int *count, t_flag flags)
 {
 	char	*hex;
 
 	hex = "0123456789abcdef";
 	if (n > 15)
-		to_hex_lower_p(n / 16, is_upper, count, flags);
-	ft_putchar(hex[n % 16], count, flags);
+		to_hex_lower_p(n / 16, count, flags);
+	*count += write(1, hex + (n % 16), 1);
 }
 
 void	print_ptr(uintptr_t ptr, int *count, t_flag flags)
 {
-	ft_putstr("0x", count, flags);
-	to_hex_lower_p(ptr, 0, count, flags);
+	int	a;
+
+	a = flags.width - (len_ptr(ptr) + 2);
+	if (!flags.minus)
+	{
+		while (a > 0)
+		{
+			*count += write(1, " ", 1);
+			a--;
+		}
+	}
+	*count += write(1, "0x", 2);
+	to_hex_lower_p(ptr, count, flags);
+	if (flags.minus)
+	{
+		while (a > 0)
+		{
+			*count += write(1, " ", 1);
+			a--;
+		}
+	}
 }
 
 void	eh(t_flag *flags, int *i, char const *s)
@@ -58,9 +76,9 @@ void	eh(t_flag *flags, int *i, char const *s)
 			flags->precision += 1;
 			*i += 1;
 			flags->precision_width = 0;
+			a = 1;
 			while (s[*i] && (s[*i] >= '0' && s[*i] <= '9'))
 			{
-				a = 1;
 				flags->precision_width = flags->precision_width
 					* 10 + s[*i] - 48;
 				*i += 1;

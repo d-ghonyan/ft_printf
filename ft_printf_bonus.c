@@ -94,7 +94,6 @@ int	ft_printf(char const *s, ...)
 		{
 			i++;
 			eh(&flags, &i, s);
-			// printf("%d %d %d %d\n", flags.width, flags.precision_width, flags.zero, flags.minus);
 			another_thingie(flags, s[i], &c);
 			norm(s[i], args, &c, flags);
 		}
@@ -108,7 +107,12 @@ int	ft_printf(char const *s, ...)
 
 int main()
 {
-	printf("--%-2c----\n", 'c');
-	ft_printf("--%-2c----\n", 'c');
+	int a = 123123;
+
+	printf("--%12.10u----\n", 1);
+	ft_printf("--%12.10u----\n", 1);
+// ft_printf("--%- 11.10x----\n", 0);
+
+	printf("\n");
 	// ft_printf("aaaaaaaa  %0s  aaaaaa\n", 123);
 }

@@ -22,18 +22,48 @@ void	_ft_putnbr_u(unsigned int n, char c, int *count, t_flag flags)
 	{
 		if (n > 9)
 			_ft_putnbr_u(n / 10, c, count, flags);
-		ft_putchar((n % 10) + 48, count, flags);
+		*count += write(1, &"0123456789"[n % 10], 1);
+	}
+}
+
+static void	hello(int cond, int a, int *count)
+{
+	if (cond)
+	{
+		while(a > 0)
+		{
+			*count += write (1, " ", 1);
+			a--;
+		}
 	}
 }
 
 void	ft_putnbr_u(unsigned int n, char c, int *count, t_flag flags)
 {
-	if (c == 'u')
+	int	a;
+	int	tf;
+	int	prec;
+
+
+	if (flags.precision && flags.precision_width <= 0 && !n)
+		return ;
+	prec = flags.precision_width - len_hex(n);
+	tf = 0;
+	if (prec > 0)
+		tf = prec;
+	a = flags.width - (len_hex(n) + (flags.space || flags.plus) + tf);
+	hello(!flags.minus, a, count);
+	if (flags.octo && n)
+		*count += write(1, "0x", 2);
+	if (flags.plus && n >= 0)
+		*count += write(1, "+", 1);
+	while (prec > 0)
 	{
-		if (flags.plus && n)
-			ft_putchar('+', count, flags);
-		else if (flags.space)
-			ft_putchar(' ', count, flags);
+		*count += write (1, "0", 1);
+		prec--;
 	}
+	if (flags.space && n >= 0 && !flags.plus)
+		*count += write(1, " ", 1);
 	_ft_putnbr_u(n, c, count, flags);
+	hello(flags.minus, a, count);
 }

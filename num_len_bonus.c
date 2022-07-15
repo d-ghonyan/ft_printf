@@ -1,18 +1,47 @@
 #include "ft_printf_bonus.h"
 
-int	len(int num, char c)
+int	len(int num)
 {
 	int	a;
-	int	base;
 
 	a = 0;
-	base = 10;
-	if (c == 'x' || c == 'X')
-		base = 16;
+	if (!num)
+		return (1);
 	while (num)
 	{
 		a++;
-		num /= base;
+		num /= 10;
 	}
 	return (a);
 }
+
+int	len_hex(unsigned int num)
+{
+	int	a;
+
+	a = 0;
+	if (!num)
+		return (1);
+	while (num)
+	{
+		a++;
+		num /= 16;
+	}
+	return (a);
+}
+
+int	len_ptr(uintptr_t num)
+{
+	uintptr_t	a;
+
+	a = 0;
+	if (!num)
+		return (1);
+	while (num)
+	{
+		a++;
+		num /= 16;
+	}
+	return (a);
+}
+

@@ -12,7 +12,7 @@
 
 #include "ft_printf_bonus.h"
 
-void	ft_putstr(char const *s, int *count, t_flag flags)
+void	_ft_putstr(char const *s, int *count, t_flag flags)
 {
 	int		i;
 
@@ -23,31 +23,30 @@ void	ft_putstr(char const *s, int *count, t_flag flags)
 		*count += 6;
 		return ;
 	}
-	while (s[i])
-	{
-		ft_putchar(s[i], count, flags);
-		i++;
-	}
+	*count += write(1, s, ft_strlen(s));
 }
 
-// void	ft_putstr(char const *s, int *count, t_flag flags)
-// {
-// 	if (flags.minus)
-// 	{
-// 		_ft_putstr(s, count, flags);
-// 		while (flags.width > 0)
-// 		{
-// 			ft_putchar(' ', count, flags);
-// 			flags.width--;
-// 		}
-// 	}
-// 	else
-// 	{
-// 		while (flags.width > 0)
-// 		{
-// 			ft_putchar(' ', count, flags);
-// 			flags.width--;
-// 		}
-// 		_ft_putstr(s, count, flags);
-// 	}
-// }
+void	ft_putstr(char const *s, int *count, t_flag flags)
+{
+	int	hello;
+
+	hello = flags.width - ft_strlen(s);
+	if (flags.minus)
+	{
+		_ft_putstr(s, count, flags);
+		while (hello > 0)
+		{
+			*count += write(1, " ", 1);
+			hello--;
+		}
+	}
+	else
+	{
+		while (hello > 0)
+		{
+			*count += write(1, " ", 1);
+			hello--;
+		}
+		_ft_putstr(s, count, flags);
+	}
+}

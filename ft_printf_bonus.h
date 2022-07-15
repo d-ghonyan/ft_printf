@@ -45,7 +45,9 @@ void	print_ptr(uintptr_t ptr, int *count, t_flag flags);
 void	eh(t_flag *flags, int *i, char const *s);
 char	*ft_strchr(const char *s, int c);
 int		ft_strlen(char const *s);
-int		len(int num, char c);
+int		len(int num);
+int		len_ptr(uintptr_t num);
+int		len_hex(unsigned int num);
 int		ft_printf(const char *s, ...);
 
 #endif
