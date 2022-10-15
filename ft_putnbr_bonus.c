@@ -66,7 +66,7 @@ void	ft_putnbr(int n, int *count, t_flag flags)
 	a = flags.width - (len(n) + (flags.space || flags.plus) + tf + (n < 0));
 	if (n < 0)
 		*count += write(1, "-", 1);
-	hello(!flags.minus, a, count, flags.zero);
+	hello(!flags.minus, a, count, flags.zero && !flags.precision);
 	too_many_lines(flags, n, count);
 	while (prec > 0)
 	{
@@ -76,5 +76,11 @@ void	ft_putnbr(int n, int *count, t_flag flags)
 	if (flags.space && n >= 0 && !flags.plus)
 		*count += write(1, " ", 1);
 	_ft_putnbr(n, count, flags);
-	hello(flags.minus, a, count, flags.zero);
+	hello(flags.minus, a, count, flags.zero && !flags.precision);
+}
+
+int main()
+{
+	printf("--%-5.1s--\n", "LYDI");
+	ft_printf("--%-5.1s--\n", "LYDI");
 }

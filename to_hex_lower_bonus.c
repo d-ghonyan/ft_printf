@@ -52,7 +52,7 @@ void	to_hex_lower(unsigned int n, int *count, t_flag flags)
 	if (prec > 0)
 		tf = prec;
 	a = flags.width - (len_hex(n) + (2 * flags.octo) + tf);
-	hello(!flags.minus, a, count, flags.zero);
+	hello(!flags.minus, a, count, flags.zero && !flags.precision_width);
 	if (flags.octo && n)
 		*count += write(1, "0x", 2);
 	while (prec > 0)
@@ -61,5 +61,5 @@ void	to_hex_lower(unsigned int n, int *count, t_flag flags)
 		prec--;
 	}
 	_to_hex_lower(n, count, flags);
-	hello(flags.minus, a, count, flags.zero);
+	hello(flags.minus, a, count, flags.zero && !flags.precision_width);
 }

@@ -14,9 +14,6 @@
 
 void	_ft_putstr(char const *s, int *count, int prec)
 {
-	int		i;
-
-	i = 0;
 	if (!s)
 	{
 		write(1, "(null)", 6);
@@ -60,5 +57,6 @@ void	ft_putstr(char const *s, int *count, t_flag flags)
 		a = flags.width - ft_strlen(s);
 	hello(!flags.minus, a, count);
 	_ft_putstr(s, count, prec);
+	printf("==%d==\n", a);
 	hello(flags.minus, a, count);
 }

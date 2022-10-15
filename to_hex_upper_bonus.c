@@ -52,7 +52,7 @@ void	to_hex_upper(unsigned int n, int *count, t_flag flags)
 	if (prec > 0)
 		tf = prec;
 	a = flags.width - (len_hex(n) + (2 * flags.octo) + tf);
-	hello(!flags.minus, a, count, flags.zero);
+	hello(!flags.minus, a, count, flags.zero && !flags.precision);
 	if (flags.octo && n)
 		*count += write(1, "0X", 2);
 	while (prec > 0)
@@ -61,5 +61,5 @@ void	to_hex_upper(unsigned int n, int *count, t_flag flags)
 		prec--;
 	}
 	_to_hex_upper(n, count, flags);
-	hello(flags.minus, a, count, flags.zero);
+	hello(flags.minus, a, count, flags.zero && !flags.precision);
 }
